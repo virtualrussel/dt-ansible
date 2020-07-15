@@ -22,6 +22,12 @@
         name: DisplayName
       register: installed
     -
+      name: "create C:\Temp download directory if it doesn't exists" 
+      win_file:
+        path: C:\Temp
+        state: directory
+      when:  temp_dir.stat.exists == false
+    -
       name: "install: download oneagent install file"
       win_get_url:
         url: "{{ dt_api_endpoint }}deployment/installer/agent/windows/default/latest?Api-Token={{ dt_api_token }}&arch=x86&flavor=default"
