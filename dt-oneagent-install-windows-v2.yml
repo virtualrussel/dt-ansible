@@ -22,7 +22,7 @@
         name: DisplayName
       register: installed
     -
-      name: "create C:\Temp download directory if it doesn't exists" 
+      name: "create Temp download directory if it doesn't exists" 
       win_file:
         path: C:\Temp
         state: directory
