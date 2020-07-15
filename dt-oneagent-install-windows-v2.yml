@@ -13,7 +13,7 @@
     -
       name: "validate ansible tower execution on windows"
       win_stat:
-        path: C:/Temp
+        path: C:\Temp
       register: temp_dir
     -
       name: "check if oneagent is already installed via windows service registry key"
@@ -25,13 +25,13 @@
       name: "install: download oneagent install file"
       win_get_url:
         url: "{{ dt_api_endpoint }}deployment/installer/agent/windows/default/latest?Api-Token={{ dt_api_token }}&arch=x86&flavor=default"
-        dest: C:/Temp/dynatrace-oneagent-windows-latest.exe
+        dest: C:\Temp\dynatrace-oneagent-windows-latest.exe
       when: installed.exists == False
     -
       name: "install: execute oneagent install file"
       win_command: dynatrace-oneagent-windows-latest.exe /quiet --set-host-group="{{ dt_host_group }}" --set-app-log-content-access="{{ dt_app_log_content_access }}" --set-infra-only="{{ dt_infra_only }}"
       args:
-        chdir: C:/Temp/
+        chdir: C:\Temp\
       when: installed.exists == False
     -
       name: "install: validate oneagent installation via windows service registry key"
