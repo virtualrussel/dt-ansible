@@ -35,7 +35,7 @@
       when: installed.exists == False
     -
       name: "install: execute oneagent install file"
-      win_command: dynatrace-oneagent-windows-latest.exe /quiet --set-host-group="{{ dt_host_group }}" --set-app-log-content-access="{{ dt_app_log_content_access }}" --set-infra-only="{{ dt_infra_only }}"
+      win_command: dynatrace-oneagent-windows-latest.exe /quiet -- --set-host-name="{{ ansible_hostname }}" --set-host-group="{{ dt_host_group }}" --set-app-log-content-access="{{ dt_app_log_content_access }}" --set-infra-only="{{ dt_infra_only }}"
       args:
         chdir: C:\Temp\
       when: installed.exists == False
