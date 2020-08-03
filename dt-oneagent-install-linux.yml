@@ -33,11 +33,12 @@
       name: "install: execute oneagent install file with root privileges"
       shell: >
         "/bin/sh /tmp/dynatrace-oneagent-linux-latest.sh --set-host-name={{ inventory_hostname }}
-        {% if dt_host_group is defined %} --set-host-group={{ dt_host_group }}{% elif dt_app_log_content_access is defined %} --set-app-log-content-access={{ dt_app_log_content_access }}
+        {% if dt_host_group is defined %} --set-host-group={{ dt_host_group }}
+        {% elif dt_infra_only is defined %} --set-infra-only={{ dt_infra_only }}
+        {% elif dt_app_log_content_access is defined %} --set-app-log-content-access={{ dt_app_log_content_access }}
         {% elif dt_user is defined %} USER={{ dt_user }}
         {% elif dt_group is defined %} GROUP={{ dt_group }}
         {% elif install_path is defined %} INSTALL_PATH={{ install_path }}
-        {% elif dt_infra_only is defined %} --set-infra-only={{ dt_infra_only }}
         {% endif %}"
       become: yes
       when: ansible_architecture != "armv7l" and installed.stat.exists == False
