@@ -37,7 +37,13 @@
       when: installed.exists == False
     -
       name: "install: execute oneagent install file"
-      win_command: dynatrace-oneagent-windows-latest.exe /quiet --set-host-name="{{ inventory_hostname }}"{% if dt_host_group is defined %} --set-host-group="{{ dt_host_group }}"{% endif %}{% if dt_infra_only is defined %} --set-infra-only="{{ dt_infra_only }}"{% endif %}{% if dt_app_log_content_access is defined %} --set-app-log-content-access="{{ dt_app_log_content_access }}"{% endif %}{% if dt_user is defined %} USER="{{ dt_user }}"{% endif %}{% if install_path is defined %} INSTALL_PATH="{{ install_path }}"{% endif %}"
+      win_command: >
+        dynatrace-oneagent-windows-latest.exe /quiet --set-host-name="{{ inventory_hostname }}"
+        {% if dt_host_group is defined %} --set-host-group="{{ dt_host_group }}"{% endif %}
+        {% if dt_infra_only is defined %} --set-infra-only="{{ dt_infra_only }}"{% endif %}
+        {% if dt_app_log_content_access is defined %} --set-app-log-content-access="{{ dt_app_log_content_access }}"{% endif %}
+        {% if dt_user is defined %} USER="{{ dt_user }}"{% endif %}
+        {% if install_path is defined %} INSTALL_PATH="{{ install_path }}"{% endif %}
       args:
         chdir: C:\Temp\
       when: installed.exists == False
