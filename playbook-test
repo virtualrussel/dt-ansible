@@ -1,0 +1,22 @@
+# dynatrace oneagent install on linux. Extra variables defined:
+# hosts_group -> inventory group of hosts to execute playbook on
+# dt_api_endpoint -> dynatrace environment api endpoint (include trailing /)
+# dt_user -> Specifies the name of the non-privileged user, to operate the oneagent processes
+# dt_group-> Specifies the group of the non-privileged user, to operate the oneagent processes
+# install_path -> Parameter allows installation to a different directory. Destination folder by default /opt/dynatrace/oneagent
+# dt_api_token -> dynatrace api install token
+# dt_host_group -> dynatrace host group name
+# dt_app_log_content_access -> flag to enable or disable log analytics on host (0 or 1)
+# dt_infra_only -> flag to set cloud infrastructure monitoring mode on host (0 or 1)
+---
+-
+  hosts: "{{ hosts_group }}"
+  name: "dynatrace oneagent install on linux"
+  tasks:
+    -
+      name: "validate ansible tower execution on linux with sudo access"
+      shell:
+        cmd: ls /opt
+      become: yes
+      become_method: pbrun
+      become_flags: bash
