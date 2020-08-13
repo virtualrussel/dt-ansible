@@ -26,7 +26,7 @@
     -
       name: "download oneagent install file"
       get_url:
-        url: "{{ dt_api_endpoint }}deployment/installer/agent/unix/default/latest?Api-Token={{ dt_api_token }}&arch=x86&flavor=default"
+        url: "{{ dt_api_endpoint }}api/v1/deployment/installer/agent/unix/default/latest?Api-Token={{ dt_api_token }}&arch=x86&flavor=default"
         dest: /tmp/dynatrace-oneagent-linux-latest.sh
         mode: '0777'
     -
